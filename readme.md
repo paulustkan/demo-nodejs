@@ -1,4 +1,4 @@
 # Run dev
 ```
-tsc && nodemon ./dist/server.js
+npm run dev
 ```

@@ -1,9 +1,11 @@
 import {Request, Response} from  'express';
 import {ContactController} from '../controllers/crmController';
+import {TutorialController} from '../controllers/tutorialController';
 
 export class Routes
 {
     public contactController: ContactController = new ContactController();
+    public tutorialController: TutorialController = new TutorialController();
 
     public routes(app): void
     {
@@ -14,6 +16,7 @@ export class Routes
             });
         })
 
+        // contact
         app.route('/contact')
         .get(this.contactController.getContacts)
         .post(this.contactController.addNewContact);
@@ -22,5 +25,15 @@ export class Routes
         .get(this.contactController.getContactWithID)
         .put(this.contactController.updateContact)
         .delete(this.contactController.deleteContact)
+
+        // tutorial
+        app.route('/tutorial')
+        .get(this.tutorialController.getTutorials)
+        .post(this.tutorialController.addNewTutorial);
+
+        app.route('/tutorial/:tutorialId')
+        .get(this.tutorialController.getTutorialWithID)
+        .put(this.tutorialController.updateTutorial)
+        .delete(this.tutorialController.deleteTutorial)
     }
 }
